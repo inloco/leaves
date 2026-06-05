@@ -25,6 +25,6 @@ func (t *TransformExponential) Type() TransformType {
 }
 
 func (t *TransformExponential) Name() string {
-	return Logistic.Name()
+	return Exponential.Name()
 }
 
