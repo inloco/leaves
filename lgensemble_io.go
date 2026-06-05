@@ -630,8 +630,8 @@ func LGEnsembleFromJSON(reader io.Reader, loadTransformation bool) (*Ensemble, e
 		return nil, fmt.Errorf("expected 'name' field = 'tree' (got: '%s')", data.Name)
 	}
 
-	if data.Version != "v2" {
-		return nil, fmt.Errorf("expected 'version' field = 'v2' (got: '%s')", data.Version)
+	if data.Version != "v2" && data.Version != "v3" && data.Version != "v4" {
+		return nil, fmt.Errorf("only v2, v3, v4 are supported for version, got %s", data.Version)
 	}
 
 	if data.NumClasses != data.NumTreesPerIteration {
