@@ -95,6 +95,19 @@ func (p *stringParams) Compare(key string, rhs string) error {
 	return nil
 }
 
+func (p *stringParams) CompareAll(key string, values []string) error {
+	valueStr, isFound := (*p)[key]
+	if !isFound {
+		return fmt.Errorf("no %s field", key)
+	}
+	for _, v := range values {
+		if valueStr == v {
+			return nil
+		}
+	}
+	return fmt.Errorf("only %v are supported for %s, got %s", values, key, valueStr)
+}
+
 func (p *stringParams) ToStrSlice(key string) ([]string, error) {
 	valueStr, isFound := (*p)[key]
 	if !isFound {
